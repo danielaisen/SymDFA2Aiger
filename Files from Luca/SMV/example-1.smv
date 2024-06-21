@@ -1,0 +1,12 @@
+MODULE main
+IVAR
+  a : boolean;
+VAR
+  x : boolean;
+ASSIGN
+  init(x) := FALSE;
+  next(x) := a;
+INVARSPEC 
+  !x
+-- for technical reasons this is the negation 
+-- of the formula for the final states

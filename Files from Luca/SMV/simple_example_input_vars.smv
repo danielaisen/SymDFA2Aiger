@@ -1,0 +1,15 @@
+MODULE main
+IVAR
+  a : boolean;
+VAR
+  s0 : boolean;
+ASSIGN
+  init(s0) := FALSE;
+  next(s0) := case
+    !s0 & a     : TRUE;
+    !s0 & !a    : FALSE;
+    s0  & a     : TRUE;
+    s0  & !a    : FALSE;
+  esac;
+INVARSPEC -- Formula for the final states: a & s0
+  !(a & s0)

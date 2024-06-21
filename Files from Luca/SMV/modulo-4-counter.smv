@@ -1,0 +1,11 @@
+MODULE main
+VAR 
+  s0 : boolean;
+  s1 : boolean;
+ASSIGN
+  init(s0) := FALSE;
+  init(s1) := FALSE;
+  next(s0) := !s0;
+  next(s1) := ((s0 & !s1) | (!s0 & s1));
+INVARSPEC  -- Formula for the final states: s0 & s1
+  !(s0 & s1);

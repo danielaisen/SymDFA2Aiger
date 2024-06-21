@@ -1,0 +1,24 @@
+aag 4 1 2 1 0
+2
+4 8
+8 2
+4
+i0 controllable_a
+l0 latch_x
+l1 latch_xp
+o0 f(X)
+c
+---------------
+I(x) = !x 
+T(x,sigma,x') = x' <-> a
+f(x,sigma) = x
+---------------
+aag 4 1 2 1 0
+2
+4 8     -- latch for x: x takes the previous value of x'
+8 2     -- latch for x': takes value "a"
+4
+i0 controllable_a
+l1 latch_x
+l2 latch_xp
+o0 f(X)

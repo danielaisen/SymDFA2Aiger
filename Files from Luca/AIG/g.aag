@@ -1,0 +1,44 @@
+aag 14 3 4 1 7
+2
+4
+6
+8 4
+10 6
+12 3
+14 26
+16
+18 10 2
+20 3 11
+22 19 21
+24 13 9
+26 11 24
+28 3 8
+16 15 28
+i0 controllable_a
+i1 i_x
+i2 i_x2
+l0 x-latch
+l1 x'-latch
+l2 I(x)-latch
+l3 s00-latch
+o0 f(x)
+c
+I(x) = !a 
+T(x,sigma,x') = x' <-> a
+f(x,sigma) = !a + x
+Sigma= {controllable= [a], uncontrolable=[]}
+2		a
+4		x
+6		x' 
+8 4		latch x (lx)
+10 6		latch x' (lx')
+12 3		I(x) = !a 
+14 26		s00 = !I(x) + !lx  + !lx' 
+16		F(x) = !a + lx + !s00
+18 10 2		lx' + a 
+20 3 11		!a + !lx' 
+22 19 21	!(lx' + a) + !(!a + !lx')
+24 13 9		!I(x) + !lx
+26 11 24	!lx' + (!I(x) + !lx) 
+28 3 8		!a + lx 
+16 15 28	!s00 + (!a + !lx)

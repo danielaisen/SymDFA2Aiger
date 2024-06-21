@@ -1,0 +1,43 @@
+aag 8 1 3 1 4
+2
+4 6
+6 15
+8 1
+16
+10 9 0
+12 8 2
+14 11 13
+16 8 4
+i0 controllable_a
+l0 latch_x
+l1 latch_xp
+l2 latch_init
+o0 f(X)
+c
+---------------
+I(x) = !x 
+T(x,sigma,x') = x' <-> a
+f(x,sigma) = x
+---------------
+aag 9 1 3 1 4
+2
+4 6     -- latch for x: x takes the previous value of x'
+6 15    -- latch for x': takes value "(!init & init(x)) + (init & next(x))"
+8 1     -- latch for init: it becomes true after the first step and remains
+           true: 1 represent the constant TRUE
+16      -- output "init & F(x)"
+10 9 0  -- !init & init(x) , where init(x) is the initial value for x, in
+            this case FALSE, because I(x) = !x
+12 8 2  -- init & next(x) , where next(x) is the next value for x, in this
+           case the formula "a", because T(x) = (x' <-> a)
+14 11 13 -- !(!init & init(x)) & !(init & next(x)) : this means that by
+            considering 15 we are considering the formula (!init & init(x)) + (init
+            & next(x)). We attach 15 to the latch 6. My dream is to use
+            a latch with index 42 :) unnecessary easter egg, but I'm
+            tired :D
+16 8 4 -- init & F(x), which means init & x.
+i0 controllable_a
+l0 latch_x
+l1 latch_xp
+l2 latch_init
+o0 f(X)
