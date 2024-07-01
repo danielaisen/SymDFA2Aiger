@@ -91,7 +91,7 @@ def cnf_not(formula: PLTLNot) -> Formula:
 def cnf_implies(formula: PLTLImplies) -> Formula:
     head = [PLTLNot(cnf(f)) for f in formula.operands[:-1]]
     tail = formula.operands[-1]
-    return PLTLOr(*head, tail)
+    return cnf(PLTLOr(*head, tail))
 
 
 # @cnf.register
@@ -133,6 +133,7 @@ def cnf_historically(formula: Historically) -> Formula:
     return Historically(cnf_unaryop(formula))
 
 
+'''
 a = PLTLAtomic("xa")
 b = PLTLAtomic("b")
 c = PLTLAtomic("c")
@@ -141,6 +142,6 @@ neg = parse_pltl("!a")
 _and = parse_pltl("a & b")
 _or = parse_pltl("_X | b")
 _or3 = parse_pltl("a | b | c ")
-
-print(cnf(_or))
-print(cnf(_or3))
+'''
+# print(cnf(_or))
+# print(cnf(_or3))
