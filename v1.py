@@ -32,6 +32,8 @@ from cnf import cnf
 from helper_list import helper_list
 
 from help import Index
+from multipledispatch import dispatch
+
 
 index = Index(1)
 
@@ -76,12 +78,14 @@ def aiger_ands(l: TreeNode):
         for child in l.children:
             if isinstance(child, int):
                 int_list.append(child)
+            elif isinstance(child, str):
+                int_list.append(child)
             elif isinstance(child, TreeNode):
                 traves_children(child)
         element = create_and(int_list)
         last_element = str(int(element)+1) if neg else element
     traves_children(l)
-    return a_ands, an, last_element
+    return last_element
 
 
 index.i = 4
@@ -113,11 +117,9 @@ def aiger_action(sigma_controlled, sigma_environment):
 
 
 def aiger_init():
-    s_init = ""
-    a_init = ""
     d["Init"] = index.i2
-    s_init += 'l' + index.t2 + " latch_init" + '\n'
-    a_init += index.i2 + " 1" + '\n'
+    s_init = 'l' + index.t2 + " latch_init" + '\n'
+    a_init = index.i2 + " 1" + '\n'
     index.i += 1
     global lat
     lat += 1
@@ -147,6 +149,64 @@ def aiger_final(final_state):
     return a_final
 
 
+@dispatch(list, Index)
+def aiger_state_variables(state_var: list[str], index_temp: Index = None,):
+    global index
+    s_var = ""
+    a_var = ""
+    for v in state_var:
+        var = str(v)
+        d[var] = index.i2
+        s_var += 'l' + index.t2 + " latch_" + (var) + '\n'
+        index.i += 1
+        a_var = a_var + index.t2 + " " + index.i2 + '\n'
+
+        x_prime = (var) + "_prime"
+        d[x_prime] = index.i2
+        s_var += 'l' + index.i2 + " latch_" + x_prime + '\n'
+        index.i += 1
+
+    return s_var, a_var
+
+
+@dispatch(list)
+def aiger_state_variables(state_var: list[str]):
+    i = Index(0)
+    return aiger_state_variables(state_var, i)
+
+
+@dispatch(dict, str, str, Index)
+def aiger_state_variables(state_var: dict, keys1: str = None, keys2: str = None,  index_temp: Index = None,):
+    global index
+    s_var = ""
+    a_var = ""
+    keys = []
+    if keys1 is not None:
+        keys += state_var[keys1]
+    if keys2 is not None:
+        keys += state_var[keys2]
+    if len(keys) == 0:
+        keys = state_var.keys
+
+    comments = ""
+    for key in keys:
+
+        var = str(key)
+        d[var] = index.i2
+        s_var += 'l' + index.t2 + " latch_" + (var) + '\n'
+        index.i += 1
+        a_var = a_var + index.t2 + " " + index.i2 + '\n'
+
+        x_prime = (var) + "_prime"
+        d[x_prime] = index.i2
+        s_var += 'l' + index.i2 + " latch_" + x_prime + '\n'
+        index.i += 1
+
+        comments += var + " maps to " + str(state_var[key]) + '\n'
+
+    return s_var, a_var
+
+
 def main():
     a = parse_pltl("a")
     b = parse_pltl("b")
@@ -161,9 +221,12 @@ def main():
     sigma_controlled = {a, c}
     sigma_environment = {b}
     final_state_variable = PLTLAnd(_x1, _x2)
+    state_variables = [_x1, _x2]
 
     s_action, a_action, act = aiger_action(sigma_controlled, sigma_environment)
-    # aiger-state
+
+    # s_action, a_action, comments = aiger_state_variables(state_variables, "Yesterday", "WeakYesterday")
+    # s_action, a_action = aiger_state_variables(state_variables)
     s_init, a_init = aiger_init()
     s_out, a_out = aiger_out()
     a_final = aiger_final(final_state_variable)

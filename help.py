@@ -27,7 +27,7 @@ class Index:
 
 
 class TreeNode:
-    def __init__(self, flag: bool = True, children: Union[List[int], List['TreeNode']] = None):
+    def __init__(self, flag: bool = False, children: Union[List[int], List['TreeNode']] = None):
         """
         Initializes a tree node with a boolean flag and a list of children.
 

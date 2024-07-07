@@ -55,7 +55,7 @@ def helper_list(formula: object):
 def helper_list(formula: object, dict):
     global dictionary
     dictionary = dict
-    _list(formula)
+    return _list(formula)
 
 
 @singledispatch
@@ -68,19 +68,19 @@ def _list(formula: object, neg: bool = None):
 
 
 @_list.register
-def helper_atomic(formula: PLTLAtomic, neg: bool = None):
+def helper_atomic(formula: PLTLAtomic, neg: bool = False):
     # node = TreeNode(neg, _get(formula, neg))
     # check if children == 1
     return _get(formula, neg)
 
 
 @_list.register
-def helper_not(formula: PLTLNot, neg: bool = None):
+def helper_not(formula: PLTLNot, neg: bool):
     return helper_unaryop(formula, True)
 
 
 @_list.register
-def helper_and(formula: PLTLAnd, neg: bool = None):
+def helper_and(formula: PLTLAnd, neg: bool = False):
     l = [_list(f) for f in formula.operands]
 
     node = TreeNode(neg, l)
