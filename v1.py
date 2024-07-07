@@ -165,8 +165,8 @@ def aiger_state_variables(state_var: list[str], index_temp: Index = None,):
         d[x_prime] = index.i2
         s_var += 'l' + index.i2 + " latch_" + x_prime + '\n'
         index.i += 1
-
-    return s_var, a_var
+    comments = 'c'
+    return s_var, a_var, comments
 
 
 @dispatch(list)
@@ -204,7 +204,7 @@ def aiger_state_variables(state_var: dict, keys1: str = None, keys2: str = None,
 
         comments += var + " maps to " + str(state_var[key]) + '\n'
 
-    return s_var, a_var
+    return s_var, a_var, comments
 
 
 def main():
@@ -226,7 +226,7 @@ def main():
     s_action, a_action, act = aiger_action(sigma_controlled, sigma_environment)
 
     # s_action, a_action, comments = aiger_state_variables(state_variables, "Yesterday", "WeakYesterday")
-    # s_action, a_action = aiger_state_variables(state_variables)
+    s_action, a_action, comments = aiger_state_variables(state_variables)
     s_init, a_init = aiger_init()
     s_out, a_out = aiger_out()
     a_final = aiger_final(final_state_variable)
