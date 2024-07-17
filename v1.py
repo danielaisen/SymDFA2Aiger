@@ -149,7 +149,6 @@ def aiger_final(final_state):
 
     a_final = str(f) + ' ' + init + ' ' + last_element + '/n'
     an += 1
-    index.i += 1
     return a_final
 
 
