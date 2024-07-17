@@ -140,12 +140,16 @@ def aiger_out():
 
 def aiger_final(final_state):
     f = d.get('Output')
+    init = d.get('Init')
     phi = cnf(final_state)
     # TODO check if there is better way then passing the dictionary
     l = helper_list(phi, d)
 
     last_element = str(aiger_ands(l))
-    a_final = str(f) + ' ' + last_element + ' ' + last_element + '/n'
+
+    a_final = str(f) + ' ' + init + ' ' + last_element + '/n'
+    an += 1
+    index.i += 1
     return a_final
 
 
