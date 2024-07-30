@@ -10,7 +10,7 @@ from pylogics_modalities.syntax.base import (
     Or
 )
 from pylogics_modalities.syntax.pltl import (
-    Atomic as PLTLAtomic,
+    Atomic as PLTLAtomic, PropositionalTrue
 
 )
 from functools import singledispatch
@@ -21,22 +21,11 @@ list_indexes = []
 
 def _get(formula, neg):
     if str(formula) in dictionary:
-        index = dictionary.get(str(formula))
-        return index if not neg else index + 1
+        index = int(dictionary.get(str(formula)))
+        return str(index) if not neg else str(index + 1)
     else:
         raise KeyError(
             f"Key '{str(formula)}' does not exist in the dictionary")
-
-
-# Example usage:
-# Creating a tree with integer children
-node1 = TreeNode(True, [1, 2, 3])
-# print(node1)  # Output: TreeNode(flag=True, children=[1, 2, 3])
-
-# Creating a tree with nested TreeNode children
-node2 = TreeNode(False, [TreeNode(True, [4, 5]), TreeNode(False, [6, 7])])
-# Output: TreeNode(flag=False, children=[TreeNode(flag=True, children=[4, 5]), TreeNode(flag=False, children=[6, 7])])
-# print(node2)
 
 
 def helper_unaryop(formula: _UnaryOp, neg: bool = False):
@@ -55,11 +44,11 @@ def helper_list(formula: object):
 def helper_list(formula: object, dict):
     global dictionary
     dictionary = dict
-    return _list(formula)
+    return _list(formula, None)
 
 
 @singledispatch
-def _list(formula: object, neg: bool = None):
+def _list(formula: object, neg):
     """finds the indexes of all proposition in the dictionary and return a list of them"""
     raise NotImplementedError(
         f"handler not implemented for object of type {type(formula)}"
@@ -68,22 +57,31 @@ def _list(formula: object, neg: bool = None):
 
 
 @_list.register
-def helper_atomic(formula: PLTLAtomic, neg: bool = False):
+def helper_atomic(formula: PropositionalTrue, neg):
+    # this function is always being called within a AND operation.
+    # AND true, is always the same value as without the TRUE.
+    return None
+
+
+@_list.register
+def helper_atomic(formula: PLTLAtomic, neg):
     # node = TreeNode(neg, _get(formula, neg))
     # check if children == 1
     return _get(formula, neg)
 
 
 @_list.register
-def helper_not(formula: PLTLNot, neg: bool):
+def helper_not(formula: PLTLNot, neg):
     return helper_unaryop(formula, True)
 
 
 @_list.register
-def helper_and(formula: PLTLAnd, neg: bool = False):
-    l = [_list(f) for f in formula.operands]
-
-    node = TreeNode(neg, l)
+def helper_and(formula: PLTLAnd, neg):
+    l = [_list(f, None) for f in formula.operands]
+    if neg is None:
+        neg = False
+    res = [i for i in l if i is not None]
+    node = TreeNode(neg, res)
     return node
 
 
@@ -118,5 +116,16 @@ tree = _list(cnf1, None)
 
 cnf1 = cnf(_or)
 # _list(cnf1, dic)
+
+
+# Example usage:
+# Creating a tree with integer children
+node1 = TreeNode(True, [1, 2, 3])
+# print(node1)  # Output: TreeNode(flag=True, children=[1, 2, 3])
+
+# Creating a tree with nested TreeNode children
+node2 = TreeNode(False, [TreeNode(True, [4, 5]), TreeNode(False, [6, 7])])
+# Output: TreeNode(flag=False, children=[TreeNode(flag=True, children=[4, 5]), TreeNode(flag=False, children=[6, 7])])
+# print(node2)
 
 '''
