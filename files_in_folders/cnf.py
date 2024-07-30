@@ -72,8 +72,8 @@ def cnf_and(formula: PLTLAnd) -> Formula:
 @cnf.register
 def cnf_or(formula: PLTLOr) -> Formula:
     if len(formula.operands) == 2:
-        sub0 = formula.operands[0]
-        sub1 = formula.operands[1]
+        sub0 = cnf(formula.operands[0])
+        sub1 = cnf(formula.operands[1])
         return (de_morgan_law(sub0, sub1))
     sub = [(cnf(f)) for f in formula.operands[:-1]]
     head = cnf(PLTLOr(*sub))
