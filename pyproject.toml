@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "SymDFA2AIGER"
-version = "1.0.0"
+version = "1.0.4"
 authors = [
   { name="Daniel Bachmann Aisen", email="danielmaxaisen@gmail.com" },
 ]
@@ -20,8 +20,6 @@ dependencies = [
   "pylogics_modalities",
 ]
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/SymDFA2AIGER"]
 
 [project.urls]
 Homepage = "https://github.com/danielaisen/SymDFA2Aiger"
