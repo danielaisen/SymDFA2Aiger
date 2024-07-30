@@ -37,7 +37,6 @@ from multipledispatch import dispatch
 index = Index(1)
 
 d = {}
-transition_system = {}
 a_ands = ""
 lat = 0
 ou = 0
@@ -251,25 +250,16 @@ def aiger_state_variables(state_var: dict, keys1: str = None, keys2: str = None,
     return s_var, a_var, comments
 
 
-def main():
-    a = parse_pltl("a")
-    b = parse_pltl("b")
-    c = parse_pltl("c")
-    _x1 = parse_pltl("x_var1")
-    _x2 = parse_pltl("x_var2")
+def create_aag_file(file_name, data):
+    # Specify the filename with the .aag extension
 
-    # temp
-    d["x_var1"] = '100'
-    d["x_var2"] = '102'
-    # temp
-    sigma_controlled = {a, c}
-    sigma_environment = {b}
-    final_state_variable = PLTLAnd(_x1, _x2)
-    state_variables = [_x1, _x2]
-    initial_state = PLTLAnd(parse_pltl("true"), _x1, PLTLNot(_x2))
+    # Open the file in write mode and write the content to it
+    with open(file_name, "w") as file:
+        file.write(data)
 
-    transition_system["x_var1_prime"] = parse_pltl("(false | a | b | c)")
-    transition_system["x_var2_prime"] = parse_pltl(" (true & (! a) & ! c )")
+
+def SymDFA2AIGER(sigma_controlled: set[Formula], sigma_environment: set[Formula], state_variables: list[Formula],
+                 initial_state: PLTLAnd, transition_system: dict, final_state_variable: PLTLAnd):
 
     s_action, a_action, act = aiger_action(sigma_controlled, sigma_environment)
 
@@ -286,12 +276,7 @@ def main():
         a_init + a_transition + a_out + a_final + a_ands
     s_total = s_action + s_var + s_init+s_out + "c \n"
 
-    # Specify the filename with the .aag extension
-    filename = "SymbDFA_AIGER.aag"
-
-    # Open the file in write mode and write the content to it
-    with open(filename, "w") as file:
-        file.write(a_total + s_total)
+    create_aag_file("SymbDFA_AIGER.aag", a_total + s_total)
 
     print(index.i)
     print(index.i2)
@@ -302,12 +287,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-
-'''
-index.i = 4
-node1 = TreeNode(True, [2, 4, 6])
-
-aaa = aiger_ands(node1)
-print(aaa)
-'''
+    SymDFA2AIGER()
