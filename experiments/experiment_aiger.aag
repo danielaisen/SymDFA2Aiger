@@ -21,9 +21,9 @@ aag 31 4 9 1 18
 38 26 4
 40 37 39
 42 27 0
-44 26 8
+44 26 6
 46 43 45
-48 8 6
+48 6 8
 50 5 49
 52 50 2
 54 26 53
@@ -33,8 +33,8 @@ aag 31 4 9 1 18
 62 37 61
 i0 controllable_c
 i1 controllable_a
-i2 i_d
-i3 i_b
+i2 i_b
+i3 i_d
 l0 latch_x_var1
 l1 latch_x_var1_prime
 l2 latch_x_var2
