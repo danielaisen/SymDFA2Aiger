@@ -1,4 +1,4 @@
-aag 32 4 9 1 19
+aag 31 4 9 1 18
 2
 4
 6
@@ -8,32 +8,31 @@ aag 32 4 9 1 19
 18 20
 22 24
 26 1
-12 43
-16 49
-20 59
-24 65
+12 41
+16 47
+20 57
+24 63
 28
-28 26 32
-30 10 15
-32 30 18
-34 3 9
-36 34 5
-38 27 1
-40 26 37
-42 39 41
-44 27 0
-46 26 8
-48 45 47
-50 8 6
-52 3 51
-54 52 4
-56 26 55
-58 39 57
-60 3 5
-62 26 60
-64 39 63
-i0 controllable_a
-i1 controllable_c
+28 26 34
+30 10 14
+32 19 23
+34 30 32
+36 27 1
+38 26 4
+40 37 39
+42 27 0
+44 26 8
+46 43 45
+48 8 6
+50 5 49
+52 50 2
+54 26 53
+56 37 55
+58 5 3
+60 26 58
+62 37 61
+i0 controllable_c
+i1 controllable_a
 i2 i_d
 i3 i_b
 l0 latch_x_var1
@@ -51,9 +50,9 @@ c
 ---
 initial state: (and x_var1 (not x_var2) x_var3 x_var4) 
 ---
-transition relation:x_var1_prime iff (or a b c)
+transition relation:x_var1_prime iff a
 x_var2_prime iff b
 x_var3_prime iff (or false a (and b d) (not c))
 x_var4_prime iff (and (not a) (not c))
 ---
-final state: (and x_var1 (not x_var2) x_var3)
+final state: (and x_var1 x_var2 (not x_var3) (not x_var4))

@@ -1,0 +1,23 @@
+aag 8 1 3 1 4
+2
+4 6
+8 1
+6 17
+10
+10 8 4
+12 9 1
+14 8 2
+16 13 15
+i0 controllable_a
+l0 latch_x_var1
+l1 latch_x_var1_prime
+l2 latch_init
+o0 F(X)
+c
+
+---
+initial state: x_var1 
+---
+transition relation:x_var1_prime iff a
+---
+final state: x_var1

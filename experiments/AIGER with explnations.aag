@@ -1,0 +1,48 @@
+aag 8 1 3 1 4
+2
+4 6
+8 1
+6 17
+10
+10 8 4
+12 9 0
+14 8 2
+16 13 15
+i0 controllable_a
+l0 latch_x_var1
+l1 latch_x_var1_prime
+l2 latch_init
+o0 F(X)
+c
+
+
+
+
+-----
+state var:
+
+---
+initial state: x_var1 
+---
+transition system:x_var1_prime iff a
+---
+final state: x_var1
+
+
+----
+2
+4 6         -- latch x to x'
+8 1         -- latch init
+10          -- output   = init & F(x)
+10 8 4      -- init & F(x)
+12 9 0      -- !init & init(x) 
+14 8 2      -- init & next(x) ; next(x) = a
+16 13 15    -- !(!init & init(x)) & !(init & next(x)) = !12 & !14
+6 17        -- latch x' = (!init & init(x)) + (init & next(x))
+                        = !{!(!init & init(x)) & !(init & next(x))} 
+                    !16 = !{!(     12        ) & !(     14       )}
+i0 controllable_a
+l0 latch_x_var1
+l1 latch_x_var1_prime
+l2 latch_init
+o0 F(X)
