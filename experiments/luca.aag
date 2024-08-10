@@ -16,8 +16,11 @@ o0 F(X)
 c
 
 ---
-initial state: x_var1 
+initial state:
+x_var1 
 ---
-transition relation:x_var1_prime iff a
+transition relation:
+x_var1_prime iff a
 ---
-final state: x_var1
+final state: 
+x_var1

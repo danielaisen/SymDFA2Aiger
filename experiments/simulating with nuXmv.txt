@@ -1,0 +1,241 @@
+AIG input file cotains 1 output
+We consider it as a bad property.
+nuXmv > go
+nuXmv > pick_state -r -v 
+Trace Description: Simulation Trace 
+Trace Type: Simulation 
+  -> State: 1.1 <-
+    latch_x_var1 = FALSE
+    latch_x_var1_prime = FALSE
+    latch_x_var2 = FALSE
+    latch_x_var2_prime = FALSE
+    latch_x_var3 = FALSE
+    latch_x_var3_prime = FALSE
+    latch_x_var4 = FALSE
+    latch_x_var4_prime = FALSE
+    latch_init = FALSE
+    F(X) = FALSE
+nuXmv > simulate -h
+usage: simulate [-h] [-p | -v] [-r | -i [-a]] [[-c "constr"] | [-t "constr"]] [-k steps]
+  -h            Prints the command usage.
+  -p            Prints current generated trace (only changed variables).
+  -v            Verbosely prints current generated trace (all variables).
+  -r            Sets picking mode to random (default is deterministic).
+  -i            Enters simulation's interactive mode.
+  -a            Displays all the state variables (changed and unchanged)
+                in every step of an interactive session.
+                It works only together with -i option.
+  -c "constr"   Sets constraint (simple expression) for the next steps.
+  -t "constr"   Sets constraint (next expression) for the next steps.
+  -k <length>   Specifies the simulation length
+                to be used when generating the simulated problem.
+  -S seed       Sets the seed for random simulation.
+nuXmv > simulate -p 
+********  Simulation Starting From State 1.1   ********
+Trace Description: Simulation Trace 
+Trace Type: Simulation 
+  -> State: 1.1 <-
+    latch_x_var1 = FALSE
+    latch_x_var1_prime = FALSE
+    latch_x_var2 = FALSE
+    latch_x_var2_prime = FALSE
+    latch_x_var3 = FALSE
+    latch_x_var3_prime = FALSE
+    latch_x_var4 = FALSE
+    latch_x_var4_prime = FALSE
+    latch_init = FALSE
+    F(X) = FALSE
+  -> Input: 1.2 <-
+    i_b = FALSE
+    i_d = FALSE
+  -> State: 1.2 <-
+    latch_x_var3 = TRUE
+    latch_x_var3_prime = TRUE
+    latch_x_var4_prime = TRUE
+    latch_init = TRUE
+  -> Input: 1.3 <-
+  -> State: 1.3 <-
+    latch_x_var1 = TRUE
+    latch_x_var2 = TRUE
+    latch_x_var2_prime = TRUE
+    latch_x_var3_prime = FALSE
+  -> Input: 1.4 <-
+  -> State: 1.4 <-
+    latch_x_var1 = FALSE
+  -> Input: 1.5 <-
+  -> State: 1.5 <-
+  -> Input: 1.6 <-
+  -> State: 1.6 <-
+  -> Input: 1.7 <-
+  -> State: 1.7 <-
+  -> Input: 1.8 <-
+  -> State: 1.8 <-
+  -> Input: 1.9 <-
+  -> State: 1.9 <-
+  -> Input: 1.10 <-
+  -> State: 1.10 <-
+  -> Input: 1.11 <-
+  -> State: 1.11 <-
+nuXmv > simulate -p -r
+********  Simulation Starting From State 1.11   ********
+Trace Description: Simulation Trace 
+Trace Type: Simulation 
+  -> Input: 1.10 <-
+    i_b = FALSE
+    i_d = FALSE
+  -> State: 1.10 <-
+    latch_x_var1 = FALSE
+    latch_x_var1_prime = FALSE
+    latch_x_var2 = TRUE
+    latch_x_var2_prime = TRUE
+    latch_x_var3 = TRUE
+    latch_x_var3_prime = FALSE
+    latch_x_var4 = FALSE
+    latch_x_var4_prime = TRUE
+    latch_init = TRUE
+    F(X) = FALSE
+  -> Input: 1.11 <-
+  -> State: 1.11 <-
+  -> Input: 1.12 <-
+    i_d = TRUE
+  -> State: 1.12 <-
+  -> Input: 1.13 <-
+  -> State: 1.13 <-
+  -> Input: 1.14 <-
+    i_d = FALSE
+  -> State: 1.14 <-
+  -> Input: 1.15 <-
+    i_b = TRUE
+  -> State: 1.15 <-
+    latch_x_var4 = TRUE
+  -> Input: 1.16 <-
+    i_b = FALSE
+  -> State: 1.16 <-
+    latch_x_var1_prime = TRUE
+    latch_x_var4 = FALSE
+  -> Input: 1.17 <-
+    i_d = TRUE
+  -> State: 1.17 <-
+    latch_x_var1_prime = FALSE
+  -> Input: 1.18 <-
+  -> State: 1.18 <-
+  -> Input: 1.19 <-
+  -> State: 1.19 <-
+  -> Input: 1.20 <-
+    i_b = TRUE
+  -> State: 1.20 <-
+    latch_x_var4 = TRUE
+  -> Input: 1.21 <-
+    i_b = FALSE
+    i_d = FALSE
+  -> State: 1.21 <-
+    latch_x_var1_prime = TRUE
+    latch_x_var4 = FALSE
+nuXmv > simulate -p -i -k 2
+********  Simulation Starting From State 1.21   ********
+
+***************  AVAILABLE STATES  *************
+  
+  ================= State =================
+  latch_x_var1 = FALSE
+  latch_x_var1_prime = FALSE
+  latch_x_var2 = TRUE
+  latch_x_var2_prime = TRUE
+  latch_x_var3 = TRUE
+  latch_x_var3_prime = FALSE
+  latch_x_var4 = TRUE
+  latch_x_var4_prime = TRUE
+  latch_init = TRUE
+  F(X) = FALSE
+    
+    This state is reachable through:
+    0) -------------------------
+    i_b = TRUE
+    i_d = TRUE
+    
+    1) -------------------------
+    i_d = FALSE
+  
+  
+  ================= State =================
+  latch_x_var4 = FALSE
+    
+    This state is reachable through:
+    2) -------------------------
+    i_b = FALSE
+    i_d = TRUE
+    
+    3) -------------------------
+    i_d = FALSE
+  
+
+Choose a state from the above (0-3): 2
+
+Chosen state is: 2
+
+***************  AVAILABLE STATES  *************
+  
+  ================= State =================
+  latch_x_var1 = FALSE
+  latch_x_var1_prime = FALSE
+  latch_x_var2 = TRUE
+  latch_x_var2_prime = TRUE
+  latch_x_var3 = TRUE
+  latch_x_var3_prime = FALSE
+  latch_x_var4 = TRUE
+  latch_x_var4_prime = TRUE
+  latch_init = TRUE
+  F(X) = FALSE
+    
+    This state is reachable through:
+    0) -------------------------
+    i_b = TRUE
+    i_d = TRUE
+    
+    1) -------------------------
+    i_d = FALSE
+  
+  
+  ================= State =================
+  latch_x_var4 = FALSE
+    
+    This state is reachable through:
+    2) -------------------------
+    i_b = FALSE
+    i_d = TRUE
+    
+    3) -------------------------
+    i_d = FALSE
+  
+
+Choose a state from the above (0-3): 2
+
+Chosen state is: 2
+Trace Description: Simulation Trace 
+Trace Type: Simulation 
+  -> Input: 1.20 <-
+    i_b = TRUE
+    i_d = TRUE
+  -> State: 1.20 <-
+    latch_x_var1 = FALSE
+    latch_x_var1_prime = FALSE
+    latch_x_var2 = TRUE
+    latch_x_var2_prime = TRUE
+    latch_x_var3 = TRUE
+    latch_x_var3_prime = FALSE
+    latch_x_var4 = TRUE
+    latch_x_var4_prime = TRUE
+    latch_init = TRUE
+    F(X) = FALSE
+  -> Input: 1.21 <-
+    i_b = FALSE
+    i_d = FALSE
+  -> State: 1.21 <-
+    latch_x_var1_prime = TRUE
+    latch_x_var4 = FALSE
+  -> Input: 1.22 <-
+    i_d = TRUE
+  -> State: 1.22 <-
+    latch_x_var1_prime = FALSE
+  -> Input: 1.23 <-
+  -> State: 1.23 <-

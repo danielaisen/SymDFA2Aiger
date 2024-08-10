@@ -1,39 +1,62 @@
-aag 19 3 5 1 11
+aag 32 4 9 1 19
 2
 4
 6
-8 10
-12 14
-16 1
-10 31
-14 39
-18
-18 16 20
-20 8 12
-22 5 7
-24 22 3
-26 17 1
-28 16 25
-30 27 29
-32 5 3
-34 17 0
-36 16 32
-38 35 37
+8
+10 12
+14 16
+18 20
+22 24
+26 1
+12 43
+16 49
+20 59
+24 65
+28
+28 26 32
+30 10 15
+32 30 18
+34 5 7
+36 34 3
+38 27 1
+40 26 37
+42 39 41
+44 27 0
+46 26 6
+48 45 47
+50 6 8
+52 5 51
+54 52 2
+56 26 55
+58 39 57
+60 5 3
+62 26 60
+64 39 63
 i0 controllable_c
 i1 controllable_a
 i2 i_b
+i3 i_d
 l0 latch_x_var1
 l1 latch_x_var1_prime
 l2 latch_x_var2
 l3 latch_x_var2_prime
-l4 latch_init
+l4 latch_x_var3
+l5 latch_x_var3_prime
+l6 latch_x_var4
+l7 latch_x_var4_prime
+l8 latch_init
 o0 F(X)
 c
 
 ---
-initial state: (and PropositionalTrue(Logic.PLTL) x_var1 (not x_var2)) 
+initial state:
+(and x_var1 (not x_var2) x_var3 x_var4) 
 ---
-transition relation:x_var1_prime iff (or false a b c)
-x_var2_prime iff (and PropositionalTrue(Logic.PLTL) (not a) (not c))
+transition relation:
+x_var1_prime iff (or a b c)
+x_var2_prime iff b
+x_var3_prime iff (or false a (and b d) (not c))
+x_var4_prime iff (and (not a) (not c))
 ---
-final state: (and x_var1 x_var2)
+final state: 
+(and x_var1 (not x_var2) x_var3)

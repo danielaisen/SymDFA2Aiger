@@ -48,11 +48,14 @@ o0 F(X)
 c
 
 ---
-initial state: (and x_var1 (not x_var2) x_var3 x_var4) 
+initial state:
+(and x_var1 (not x_var2) x_var3 x_var4) 
 ---
-transition relation:x_var1_prime iff a
+transition relation:
+x_var1_prime iff a
 x_var2_prime iff b
 x_var3_prime iff (or false a (and b d) (not c))
 x_var4_prime iff (and (not a) (not c))
 ---
-final state: (and x_var1 x_var2 (not x_var3) (not x_var4))
+final state: 
+(and x_var1 x_var2 (not x_var3) (not x_var4))

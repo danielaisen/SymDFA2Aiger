@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "SymDFA2AIGER"
-version = "1.0.4"
+version = "1.0.5"
 authors = [
   { name="Daniel Bachmann Aisen", email="danielmaxaisen@gmail.com" },
 ]

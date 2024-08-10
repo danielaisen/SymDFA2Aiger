@@ -452,7 +452,7 @@ def add_comments(state_variables, initial_state, transition_system, final_state_
                 c = c + f"{var}: {state_variables_return_dict[var]}\n"
 
     c = c + \
-        f"\n---\ninitial state: {initial_state} \n---\ntransition relation:"
+        f"\n---\ninitial state:\n{initial_state} \n---\ntransition relation:\n"
     for tran in transition_system.keys():
         c = c + f"{tran} iff {transition_system[tran]}\n"
-    c = c + f"---\nfinal state: {final_state_variable}\n"
+    c = c + f"---\nfinal state: \n{final_state_variable}\n"
