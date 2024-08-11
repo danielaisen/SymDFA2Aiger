@@ -5,7 +5,7 @@
 SymDFA2Aiger is a tool for converting a symbolic deterministic finite automaton (SDFA) into an AIGER file (.aag). The main function provided is `SymDFA2Aiger`. 
 An example input file is included in this directory to illustrate the expected format for the function.
 
-### Personal Note
+#### Personal Note
 
 This tool was created by Daniel Bachmann Aisen as part of his master’s thesis. 
 In 2024, amidst challenging times, this project is dedicated to the safe return of all hostages, to the soldiers safeguarding my friends, family, and me, and in memory of those who have fallen. 
