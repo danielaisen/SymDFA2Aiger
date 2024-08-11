@@ -64,5 +64,4 @@ This tool requires two external libraries: [pylogics_modalities](https://github.
 pip install dependencies/pylogics_modalities-0.2.2-py3-none-any.whl
 
 
-```bash
 pip install SymDFA2Aiger
