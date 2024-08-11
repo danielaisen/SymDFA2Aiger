@@ -18,7 +18,8 @@ classifiers = [
 ]
 dependencies = [
   "pylogics_modalities",
-]
+  "functools"
+  ]
 
 
 [project.urls]
