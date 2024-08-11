@@ -60,8 +60,8 @@ SymDFA2AIGER(sigma_controlled, sigma_environment, state_variables_input, initial
 This tool requires two external libraries: [pylogics_modalities](https://github.com/danielaisen/pylogics_modalities) and `multipledispatch`.
 
 - **pylogics_modalities**: This library extends the pylogics library by whitemech. To install it, use the `.whl` file provided in the `dependencies` folder:
+
+`pip install dependencies/pylogics_modalities-0.2.2-py3-none-any.whl`
+
 ```bash
-pip install dependencies/pylogics_modalities-0.2.2-py3-none-any.whl
-
-
 pip install SymDFA2Aiger

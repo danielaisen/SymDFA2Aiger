@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "SymDFA2AIGER"
-version = "1.1.0"
+version = "1.1.2"
 authors = [
   { name="Daniel Bachmann Aisen", email="danielmaxaisen@gmail.com" },
 ]
@@ -17,8 +17,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-  "pylogics_modalities",
-  "functools"
+  "pylogics_modalities"
   ]
 
 

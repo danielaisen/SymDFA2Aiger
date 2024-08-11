@@ -1,7 +1,5 @@
 
 """Modify the formula with base operators visitor."""
-from multipledispatch import dispatch
-from pylogics_modalities.parsers import parse_pltl
 
 from pylogics_modalities.syntax.base import (
     And as PLTLAnd,
@@ -9,8 +7,7 @@ from pylogics_modalities.syntax.base import (
     Formula,
     Implies as PLTLImplies,
     Not as PLTLNot,
-    _UnaryOp,
-    Equivalence as PLTLEquivalence
+    _UnaryOp
 
 )
 from pylogics_modalities.syntax.pltl import (
@@ -24,18 +21,14 @@ from pylogics_modalities.syntax.pltl import (
     PropositionalTrue,
     Since,
     Triggers,
-    # PLTLEquivalence
 )
 
 from functools import singledispatch
 
-from typing import List, Union
-from pylogics_modalities.parsers import parse_pltl
 from pylogics_modalities.syntax.base import (
     And as PLTLAnd,
     Not as PLTLNot,
-    _UnaryOp,
-    Or
+    _UnaryOp
 )
 from pylogics_modalities.syntax.pltl import (
     Atomic as PLTLAtomic, PropositionalTrue
