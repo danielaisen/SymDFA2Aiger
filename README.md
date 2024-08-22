@@ -28,7 +28,7 @@ The tool requires five inputs corresponding to SDFA properties:
 ### Example Usage
 
 ```python
-from SymDFA2AIGER.main import SymDFA2AIGER
+from SymDFA2AIGER import SymDFA2AIGER
 
 a = parse_pltl("a")
 b = parse_pltl("b")
