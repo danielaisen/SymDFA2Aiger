@@ -313,7 +313,7 @@ def aiger_out():
 
 def aiger_final(final_state):
     f = dictionary.get('Output')
-    init = dictionary.get('Init')
+    init = 1 + int(dictionary.get('Init'))
     phi = cnf(final_state)
 
     last_element = _list(phi)

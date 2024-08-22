@@ -4,7 +4,7 @@ from pylogics_modalities.syntax.base import (
     And as PLTLAnd,
     Not as PLTLNot)
 
-from SymDFA2AIGER import SymDFA2AIGER
+from src.SymDFA2AIGER import SymDFA2AIGER
 
 
 def call_AIGER():

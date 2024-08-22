@@ -21,3 +21,8 @@ Commands to read an AIGER file:
 > go
 > pick_state -v -r   -- now you can simulate the model like before
 > simulate -v -i -k 10
+
+build bollean model 
+
+build_boolean
+check_invar
